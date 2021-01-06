@@ -8,6 +8,7 @@
 // 정수 n개 주어졌을 때 합을 구하는 함수를 작성하시오
 //long long sum(std::vector<int> &a); 함수 작성
 
+
 #include <iostream>
 using namespace std;
 
