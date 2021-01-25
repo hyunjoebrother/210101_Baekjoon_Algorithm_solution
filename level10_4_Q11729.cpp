@@ -1,4 +1,4 @@
-// 210116 백준 단계별로 코테 준비 시작하기 -> 매일 Github 올리기 (11:50PM)
+// 210125 백준 단계별로 코테 준비 시작하기 -> 매일 Github 올리기 (11:50PM)
 // Level 10. 재귀
 // 문제 11729. 하노이 탑 이동 순서 -> 성공! 
 
@@ -29,7 +29,7 @@
 // 1번 기둥의 제일 큰 원판을 3번으로 이동
 // 2번 기둥의 n-1개를 모두 3번으로 이동
 
-
+/*
 #include <iostream>
 using namespace std;
 
@@ -61,12 +61,58 @@ int main()
 	// 옯긴 횟수 K 출력, 수행 과정 A, B 출력
 	// A번째 탑의 가장 위에 있는 원판을 B번째 탑의 가장 위로 옮긴다는 뜻
 }
-
+*/
 
 // 2. 인터넷 풀이 
 
+#include <iostream>
+using namespace std;
 
+int cnt = 0;
 
+void hanoi(int num, int from, int to, int other)
+{
+	if (num == 1)
+	{
+		cnt++;
+		return;
+	}
+	else
+	{
+		hanoi(num - 1, from, other, to);
+		hanoi(1, from, to, other);
+		hanoi(num - 1, other, to, from);
+	}
+}
+
+void hanoi_print(int num, int from, int to, int other)
+{
+	if (num == 1)
+	{
+		printf("%d %d\n", from, to);
+		return;
+	}
+	else
+	{
+		hanoi_print(num - 1, from, other, to);
+		hanoi_print(1, from, to, other);
+		hanoi_print(num - 1, other, to, from);
+	}
+}
+
+int main()
+{
+	// 첫째 줄에 첫 번째 장대에 쌓인 원판의 개수 N (1<= N <= 20) 입력
+	int n;
+	cin >> n;
+
+	hanoi(n, 1, 3, 2);
+
+	// 옯긴 횟수 K 출력, 수행 과정 A, B 출력
+	printf("%d\n", cnt);
+
+	hanoi_print(n, 1, 3, 2);
+}
 
 
 
